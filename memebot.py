@@ -33,7 +33,12 @@ async def on_ready():
 async def meme(ctx):
     sub = reddit.subreddit(random.choice(memes))
     submission = sub.random()
-    await ctx.send(submission.url + " from " + sub.display_name)
+    await ctx.send(submission.url + " from r/" + sub.display_name)
+
+async def meme(ctx, newSub: str):
+    sub = reddit.subreddit(newSub)
+    submission = sub.random()
+    await ctx.send(submission.url + " from r/" + sub.display_name)
 
 """@bot.command()
 async def memes(ctx, num: int):
@@ -42,6 +47,13 @@ async def memes(ctx, num: int):
         sub = reddit.subreddit(random.choice(memes)).random()
         await ctx.send(sub.url)"""
 
+"""async def on_message(self, message):
+    if message.author.id == self.user.id:
+        return
+
+    if message.content.contains("srija") or message.content.contains("Srija"):
+        await message.channel.send("LOL")"""
+
 @bot.command()
 async def info(ctx):
     await ctx.send(description)
@@ -49,7 +61,8 @@ async def info(ctx):
 @bot.event
 async def memeOfTheHour(ctx):
     if datetime.time().minute == 0:
-        submission = reddit.subreddit(random.choice(memes)).random()
-        await ctx.send('Meme Of The Hour: ' + submission.url)
+        sub = reddit.subreddit(random.choice(memes))
+        submission = sub.random()
+        await ctx.send('Meme Of The Hour: ' + submission.url + " from r/" + sub.display_name)
 
 bot.run(token)
