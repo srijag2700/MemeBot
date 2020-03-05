@@ -35,7 +35,7 @@ async def meme(ctx):
     submission = sub.random()
     await ctx.send(submission.url + " from r/" + sub.display_name)
 
-async def meme(ctx, newSub: str):
+async def memeFrom(ctx, newSub: str):
     sub = reddit.subreddit(newSub)
     submission = sub.random()
     await ctx.send(submission.url + " from r/" + sub.display_name)
