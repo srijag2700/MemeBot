@@ -33,7 +33,7 @@ async def on_ready():
 async def meme(ctx):
     sub = reddit.subreddit(random.choice(memes))
     submission = sub.random()
-    await ctx.send(submission.url + " from " + sub.name)
+    await ctx.send(submission.url + " from " + sub.display_name)
 
 """@bot.command()
 async def memes(ctx, num: int):
