@@ -1,4 +1,3 @@
-# token = 'Njg0OTUyNzA4ODMwMzMwOTEw.XmBnhA.QihAPwCdfVcSS6BhsZoKdICBAAM'
 import discord
 from discord.ext import commands
 import random
