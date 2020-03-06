@@ -16,6 +16,8 @@ redditID = os.getenv('REDDIT_ID')
 reddit_secret = os.getenv('REDDIT_SECRET')
 reddit_refresh = os.getenv('REDDIT_REFRESH')
 
+client = discord.Client()
+
 reddit = praw.Reddit(client_id=redditID, client_secret=reddit_secret, 
     refresh_token = reddit_refresh, user_agent='MemeBot')
 
@@ -48,11 +50,12 @@ async def memes(ctx, num: int):
         sub = reddit.subreddit(random.choice(memes)).random()
         await ctx.send(sub.url)"""
 
-async def on_message(self, message):
-    if message.author.id == self.user.id:
+@bot.event()
+async def on_message(message):
+    if message.author == client.user:
         return
 
-    if message.content.contains("srija") or message.content.contains("Srija"):
+    if "srija" in message.content:
         await message.channel.send("i see no god up here except Srija")
 
 @bot.command()
