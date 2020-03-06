@@ -51,11 +51,11 @@ async def memes(ctx, num: int):
         await ctx.send(sub.url)"""
 
 @bot.event
-async def on_message(self, message):
-    if message.author == self.user:
+async def on_message(message):
+    if message.author == client.user:
         return
 
-    if "srija" in message.content.lower:
+    if message.content.startswith('$srija'):
         await message.channel.send("i see no god up here except Srija")
 
 @bot.command()
