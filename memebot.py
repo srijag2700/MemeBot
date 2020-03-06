@@ -51,8 +51,8 @@ async def memes(ctx, num: int):
         await ctx.send(sub.url)"""
 
 @bot.event()
-async def on_message(message):
-    if message.author == client.user:
+async def on_message(self, message):
+    if message.author == self.user:
         return
 
     if "srija" in message.content:
