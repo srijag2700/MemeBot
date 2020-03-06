@@ -48,12 +48,12 @@ async def memes(ctx, num: int):
         sub = reddit.subreddit(random.choice(memes)).random()
         await ctx.send(sub.url)"""
 
-"""async def on_message(self, message):
+async def on_message(self, message):
     if message.author.id == self.user.id:
         return
 
     if message.content.contains("srija") or message.content.contains("Srija"):
-        await message.channel.send("LOL")"""
+        await message.channel.send("i see no god up here except Srija")
 
 @bot.command()
 async def info(ctx):
