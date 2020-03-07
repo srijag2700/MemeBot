@@ -23,7 +23,7 @@ memes = ['memes', 'dankmemes', 'MemeEconomy', '2meirl4meirl', 'me_irl', 'meme',
     'surrealmemes', 'funny', 'trippinthroughtime', 'starterpacks', "ProgrammerHumor"]
 
 @bot.event
-async def on_ready():
+async def on_ready(self):
     print('Logged in as')
     print(bot.user.name)
     print(bot.user.id)
@@ -48,13 +48,13 @@ async def memes(ctx, num: int):
         sub = reddit.subreddit(random.choice(memes)).random()
         await ctx.send(sub.url)"""
 
-"""@bot.event
-async def on_message(message):
-    if message.author == bot.user:
+@bot.event
+async def on_message(self, message):
+    if message.author.id == self.user.id:
         return
 
-    if message.content.startswith('$srija'):
-        await message.channel.send("i see no god up here except Srija")"""
+    if message.content.startswith('srija'):
+        await message.channel.send("i see no god up here except Srija")
 
 @bot.command()
 async def info(ctx):
