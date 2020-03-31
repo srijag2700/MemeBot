@@ -8,7 +8,7 @@ import os
 from dotenv import load_dotenv
 
 description = '''A bot solely for memes. \nm!meme: Send a random meme from Reddit. 
-    \nm!mfrom <subreddit>: Send a meme from the specified subreddit. \n\nCreated by <@!144266578408636417>'''
+    \nm!mfrom <subreddit>: Send a meme from the specified subreddit. \nCreated by <@!144266578408636417>'''
 bot = commands.Bot(command_prefix='m!', description=description)
 
 load_dotenv()
@@ -30,7 +30,7 @@ async def on_ready():
     print(bot.user.id)
     print('------')
 
-    game = discord.Game("with memes | m!meme")
+    game = discord.Game("with memes | m!info")
     await bot.change_presence(status=discord.Status.online, activity=game)
 
 @bot.command()
