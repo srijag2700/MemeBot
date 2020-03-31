@@ -30,7 +30,7 @@ async def on_ready():
     print('------')
 
     game = discord.Game("with memes | m!meme")
-    await bot.change_presence(status=discord.Status.idle, activity=game)
+    await bot.change_presence(status=discord.Status.online, activity=game)
 
 @bot.command()
 async def meme(ctx):
