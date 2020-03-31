@@ -29,6 +29,9 @@ async def on_ready():
     print(bot.user.id)
     print('------')
 
+    game = discord.Game("with memes | m!meme")
+    await bot.change_presence(status=discord.Status.idle, activity=game)
+
 @bot.command()
 async def meme(ctx):
     sub = reddit.subreddit(random.choice(memes))
