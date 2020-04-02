@@ -41,8 +41,11 @@ async def meme(ctx):
 @bot.command()
 async def mfrom(ctx, newSub: str):
     sub = reddit.subreddit(newSub)
-    submission = sub.random()
-    await ctx.send(submission.url + " from r/" + sub.display_name)
+    if (sub.over18 == True):
+        await ctx.send("Nice try :)")
+    else:
+        submission = sub.random()
+        await ctx.send(submission.url + " from r/" + sub.display_name)
 
 """@bot.command()
 async def memes(ctx, num: int):
