@@ -71,17 +71,21 @@ async def memes(ctx, num: int):
 async def on_message(message):
     if bot.user.id != message.author.id:
         if 'foo' in message.content:
-            await bot.channel.send('bar')
+            await message.channel.send('bar')
 
     await bot.process_commands(message)
 
 @bot.command()
 async def info(ctx):
     await ctx.send(description)
+    
+@bot.command()
+async def invite(ctx):
+    await ctx.send("https://discordapp.com/oauth2/authorize?client_id=684952708830330910&permissions=68608&scope=bot")
 
 @bot.command()
 async def servers(ctx):
-    await ctx.send("I am in " + str(len(bot.servers) + " servers."))
+    await ctx.send("I am in " + str(len(bot.guilds) + " servers."))
 
 @bot.event
 async def memeOfTheHour(ctx):
