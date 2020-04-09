@@ -40,7 +40,12 @@ async def meme(ctx):
 
 @bot.command()
 async def mfrom(ctx, newSub: str):
-    sub = reddit.subreddit(newSub)
+    try:
+        sub = reddit.subreddit(newSub)
+    except:
+        await ctx.send("Subreddit not found. Make sure the subreddit exists & that capitalization is correct.")
+        return
+    
     if (sub.over18 == True):
         await ctx.send("NSFW subreddit detected. Nice try :)")
     else:
