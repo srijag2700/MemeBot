@@ -38,19 +38,27 @@ async def meme(ctx):
     submission = sub.random()
     await ctx.send(submission.url + " from r/" + sub.display_name)
 
+def subreddit_validate(temp: str):
+    sub_exists = True
+    sub = reddit.subreddit(temp)
+    try:
+        sub._fetch()
+    except:
+        sub_exists = False
+    return sub_exists
+        
+
 @bot.command()
 async def mfrom(ctx, newSub: str):
-    try:
+    if (subreddit_validate(newSub)):
         sub = reddit.subreddit(newSub)
-    except:
-        await ctx.send("Subreddit not found. Make sure the subreddit exists & that capitalization is correct.")
-        return
-    
-    if (sub.over18 == True):
-        await ctx.send("NSFW subreddit detected. Nice try :)")
+        if (sub.over18 == True):
+            await ctx.send("NSFW subreddit detected. Nice try :)")
+        else:
+            submission = sub.random()
+            await ctx.send(submission.url + " from r/" + sub.display_name)
     else:
-        submission = sub.random()
-        await ctx.send(submission.url + " from r/" + sub.display_name)
+        await ctx.send("Subreddit does not exist. Please enter an existing subreddit & make sure your capitalization is correct.")
 
 """@bot.command()
 async def memes(ctx, num: int):
