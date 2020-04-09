@@ -42,7 +42,7 @@ async def meme(ctx):
 async def mfrom(ctx, newSub: str):
     sub = reddit.subreddit(newSub)
     if (sub.over18 == True):
-        await ctx.send("Nice try :)")
+        await ctx.send("NSFW subreddit detected. Nice try :)")
     else:
         submission = sub.random()
         await ctx.send(submission.url + " from r/" + sub.display_name)
@@ -65,6 +65,10 @@ async def on_message(message):
 @bot.command()
 async def info(ctx):
     await ctx.send(description)
+
+@bot.command()
+async def servers(ctx):
+    await ctx.send("I am in " + str(len(bot.servers) + " servers."))
 
 @bot.event
 async def memeOfTheHour(ctx):
