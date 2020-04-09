@@ -7,7 +7,7 @@ import time
 import os
 from dotenv import load_dotenv
 
-description = '''A bot solely for memes, created by <@!144266578408636417>.'''
+description = 'A bot solely for memes, created by Srija (<@!144266578408636417>). \nm!meme: Sends a random meme from Reddit. \nm!mfrom <subreddit>: Sends a meme from the specified subreddit. \nm!invite: Invite me to your own server. \nm!servers: See how many servers I\'m in.'
 bot = commands.Bot(command_prefix='m!', description=description)
 
 load_dotenv()
