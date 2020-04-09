@@ -69,11 +69,11 @@ async def memes(ctx, num: int):
 
 @bot.event
 async def on_message(message):
-    if message.author == bot.user:
-        return
+    if bot.user.id != message.author.id:
+        if 'foo' in message.content:
+            await bot.send_message(message.channel, 'bar')
 
-    if 'srija' in message.content:
-        await message.channel.send("i see no god up here except Srija")
+    await bot.process_commands(message)
 
 @bot.command()
 async def info(ctx):
