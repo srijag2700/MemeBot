@@ -70,8 +70,8 @@ async def memes(ctx, num: int):
 @bot.event
 async def on_message(message):
     if bot.user.id != message.author.id:
-        if 'foo' in message.content:
-            await message.channel.send('bar')
+        if 'srija' in message.content.lower():
+            await message.channel.send('did someone say srija')
 
     await bot.process_commands(message)
 
@@ -85,7 +85,7 @@ async def invite(ctx):
 
 @bot.command()
 async def servers(ctx):
-    await ctx.send("I am in " + str(len(bot.guilds) + " servers."))
+    await ctx.send("I am in " + str(len(bot.guilds)) + " servers.")
 
 @bot.event
 async def memeOfTheHour(ctx):
