@@ -71,7 +71,7 @@ async def memes(ctx, num: int):
 async def on_message(message):
     if bot.user.id != message.author.id:
         if 'foo' in message.content:
-            await bot.send(message.channel, 'bar')
+            await bot.channel.send('bar')
 
     await bot.process_commands(message)
 
