@@ -7,7 +7,7 @@ import time
 import os
 from dotenv import load_dotenv
 
-description = '''A bot solely for memes, created by <@!144266578408636417>. \nm!meme: Send a random meme from Reddit. \nm!mfrom <subreddit>: Send a meme from the specified subreddit.'''
+description = '''A bot solely for memes, created by <@!144266578408636417>.'''
 bot = commands.Bot(command_prefix='m!', description=description)
 
 load_dotenv()
@@ -32,7 +32,7 @@ async def on_ready():
     game = discord.Game("with memes | m!info")
     await bot.change_presence(status=discord.Status.online, activity=game)
 
-@bot.command()
+@bot.command(description="Sends a random meme from Reddit.")
 async def meme(ctx):
     sub = reddit.subreddit(random.choice(memes))
     submission = sub.random()
@@ -48,7 +48,7 @@ def subreddit_validate(temp: str):
     return sub_exists
         
 
-@bot.command()
+@bot.command(description="Sends a meme from the specified subreddit.")
 async def mfrom(ctx, newSub: str):
     if (subreddit_validate(newSub)):
         sub = reddit.subreddit(newSub)
@@ -60,12 +60,17 @@ async def mfrom(ctx, newSub: str):
     else:
         await ctx.send("Subreddit does not exist. Please enter an existing subreddit & make sure your capitalization is correct.")
 
-"""@bot.command()
-async def memes(ctx, num: int):
-    xNum = num
-    for x in range (xNum):
-        sub = reddit.subreddit(random.choice(memes)).random()
-        await ctx.send(sub.url)"""
+@bot.command(description="Information about MemeBot.")
+async def info(ctx):
+    await ctx.send(description)
+    
+@bot.command(description="Invite the bot to your own server.")
+async def invite(ctx):
+    await ctx.send("<https://discordapp.com/oauth2/authorize?client_id=684952708830330910&permissions=68608&scope=bot>")
+
+@bot.command(description="Number of servers the bot is in.")
+async def servers(ctx):
+    await ctx.send("I am in " + str(len(bot.guilds)) + " servers.")
 
 @bot.event
 async def on_message(message):
@@ -75,23 +80,18 @@ async def on_message(message):
 
     await bot.process_commands(message)
 
-@bot.command()
-async def info(ctx):
-    await ctx.send(description)
-    
-@bot.command()
-async def invite(ctx):
-    await ctx.send("https://discordapp.com/oauth2/authorize?client_id=684952708830330910&permissions=68608&scope=bot")
-
-@bot.command()
-async def servers(ctx):
-    await ctx.send("I am in " + str(len(bot.guilds)) + " servers.")
+"""@bot.command()
+async def memes(ctx, num: int):
+    xNum = num
+    for x in range (xNum):
+        sub = reddit.subreddit(random.choice(memes)).random()
+        await ctx.send(sub.url)
 
 @bot.event
 async def memeOfTheHour(ctx):
     if datetime.time().minute == 0:
         sub = reddit.subreddit(random.choice(memes))
         submission = sub.random()
-        await ctx.send('Meme Of The Hour: ' + submission.url + " from r/" + sub.display_name)
+        await ctx.send('Meme Of The Hour: ' + submission.url + " from r/" + sub.display_name)"""
 
 bot.run(token)
