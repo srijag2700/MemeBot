@@ -74,7 +74,7 @@ async def servers(ctx):
 
 @bot.event
 async def on_message(message):
-    if bot.user.id != message.author.id:
+    if bot.user.id != message.author.id and message.author.bot == False:
         if 'srija' in message.content.lower():
             await message.channel.send('did someone say srija')
 
