@@ -77,6 +77,8 @@ async def on_message(message):
     if bot.user.id != message.author.id and message.author.bot == False:
         if 'srija' in message.content.lower():
             await message.channel.send('did someone say srija')
+    elif bot.user.id != message.author.id and message.author.id == '709835785821487154':
+        await message.channel.send('cute dog')
 
     await bot.process_commands(message)
 
