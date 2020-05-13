@@ -74,7 +74,7 @@ async def servers(ctx):
 
 @bot.event
 async def on_message(message):
-    if bot.user.id != message.author.id and message.author.id == '709835785821487154':
+    if bot.user.id != message.author.id and message.author.id == 709835785821487154:
         await message.channel.send('cute dog')
     elif bot.user.id != message.author.id and message.author.bot == False:
         if 'srija' in message.content.lower():
