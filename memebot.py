@@ -22,6 +22,8 @@ reddit = praw.Reddit(client_id=redditID, client_secret=reddit_secret,
 memes = ['memes', 'dankmemes', 'MemeEconomy', '2meirl4meirl', 'me_irl', 'meme', 
     'surrealmemes', 'funny', 'trippinthroughtime', 'starterpacks', "ProgrammerHumor"]
 
+pastas = ['copypasta', 'emojipasta', 'WholesomeCopypasta']
+
 @bot.event
 async def on_ready():
     print('Logged in as')
@@ -36,7 +38,17 @@ async def on_ready():
 async def meme(ctx):
     sub = reddit.subreddit(random.choice(memes))
     submission = sub.random()
+    while (submission.over_18 == True):
+        submission = sub.random()
     await ctx.send(submission.url + " from r/" + sub.display_name)
+
+@bot.command(description='Sends a random copypasta from Reddit.')
+async def pasta(ctx):
+    sub = reddit.subreddit(random.choice(pastas))
+    submission = sub.random()
+    while (submission.over_18 == True or len(submission.selftext) >= 2000):
+        submission = sub.random()
+    await ctx.send("From r/" + sub.display_name + "\n\n" + submission.selftext)
 
 def subreddit_validate(temp: str):
     sub_exists = True
@@ -45,8 +57,7 @@ def subreddit_validate(temp: str):
         sub._fetch()
     except:
         sub_exists = False
-    return sub_exists
-        
+    return sub_exists 
 
 @bot.command(description="Sends a meme from the specified subreddit.")
 async def mfrom(ctx, newSub: str):
