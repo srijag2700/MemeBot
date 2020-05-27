@@ -45,9 +45,10 @@ async def meme(ctx):
 @bot.command(description='Sends a random copypasta from Reddit.')
 async def pasta(ctx):
     sub = reddit.subreddit(random.choice(pastas))
-    submission = sub.random()
-    while (submission.over_18 == True or len(submission.selftext) >= 2000):
+    while True:
         submission = sub.random()
+        if (submission.over_18 == False and len(submission.selftext) < 2000):
+            break
     await ctx.send("From r/" + sub.display_name + "\n\n" + submission.selftext)
 
 def subreddit_validate(temp: str):
