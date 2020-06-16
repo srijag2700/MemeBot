@@ -60,7 +60,7 @@ def subreddit_validate(temp: str):
         sub_exists = False
     return sub_exists 
 
-def pseudo_random(sub: Subreddit):
+def pseudo_random(sub: str):
     posts = []
     for submission in sub.top("day"):
         posts.append(submission)
