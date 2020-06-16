@@ -74,6 +74,9 @@ async def mfrom(ctx, newSub: str):
             await ctx.send("NSFW subreddit detected. Nice try :)")
         else:
             submission = sub.random()
+            while(submission.is_self == True):
+                submission = sub.random()
+                
             try:
                 await ctx.send(submission.url + " from r/" + sub.display_name)
             except(AttributeError):
