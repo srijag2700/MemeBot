@@ -68,7 +68,10 @@ async def mfrom(ctx, newSub: str):
             await ctx.send("NSFW subreddit detected. Nice try :)")
         else:
             submission = sub.random()
-            await ctx.send(submission.url + " from r/" + sub.display_name)
+            try:
+                await ctx.send(submission.url + " from r/" + sub.display_name)
+            except(AttributeError):
+                await ctx.send("Sorry, that subreddit doesn't support retrieving random messages. A fix is coming soon.")
     else:
         await ctx.send("Subreddit does not exist. Please enter an existing subreddit & make sure your capitalization is correct.")
 
