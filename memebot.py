@@ -74,15 +74,20 @@ async def mfrom(ctx, newSub: str):
             await ctx.send("NSFW subreddit detected. Nice try :)")
         else:
             submission = sub.random()
-            while(submission.is_self == True):
+            try_counter = 0
+            while(submission.is_self == True and try_counter <= 10):
                 submission = sub.random()
-                
-            try:
-                await ctx.send(submission.url + " from r/" + sub.display_name)
-            except(AttributeError):
-                #await ctx.send("Sorry, that subreddit doesn't support retrieving random messages. A fix is coming soon.")
-                p_ran = pseudo_random(sub)
-                await ctx.send(p_ran.url + " from r/" + sub.display_name)
+                try_counter += 1
+            
+            if try_counter > 10:
+                    await ctx.send("I'm having trouble finding an image post on " + sub.display_name + ". Please try again.")
+            else:
+                try:
+                    await ctx.send(submission.url + " from r/" + sub.display_name)
+                except(AttributeError):
+                    #await ctx.send("Sorry, that subreddit doesn't support retrieving random messages. A fix is coming soon.")
+                    p_ran = pseudo_random(sub)
+                    await ctx.send(p_ran.url + " from r/" + sub.display_name)
     else:
         await ctx.send("Subreddit does not exist. Please enter an existing subreddit & make sure your capitalization is correct.")
 
