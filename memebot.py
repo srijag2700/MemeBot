@@ -60,9 +60,9 @@ def subreddit_validate(temp: str):
         sub_exists = False
     return sub_exists 
 
-def pseudo_random(sub: str):
+def pseudo_random(valid_sub: str):
     posts = []
-    for submission in sub.top("day"):
+    for submission in reddit.subreddit(valid_sub).top("day"):
         posts.append(submission)
     return random.choice(posts)
 
@@ -79,7 +79,7 @@ async def mfrom(ctx, newSub: str):
             except(AttributeError):
                 #await ctx.send("Sorry, that subreddit doesn't support retrieving random messages. A fix is coming soon.")
                 p_ran = pseudo_random(sub)
-                await ctx.send(p_ran.url + "from r/" + sub.display_name)
+                await ctx.send(p_ran.url + " from r/" + sub.display_name)
     else:
         await ctx.send("Subreddit does not exist. Please enter an existing subreddit & make sure your capitalization is correct.")
 
