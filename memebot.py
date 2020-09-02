@@ -108,7 +108,10 @@ async def on_message(message):
         await message.channel.send('cute dog')
     elif bot.user.id != message.author.id and message.author.bot == False:
         if 'srija' in message.content.lower():
-            await message.channel.send('did someone say srija')
+            if random.randint(0,10) <= 2:
+                await message.channel.send('hey <@!144266578408636417> they\'re talking about you')
+            else:
+                await message.channel.send('did someone say srija')
 
     await bot.process_commands(message)
 
