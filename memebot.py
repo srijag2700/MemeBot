@@ -90,6 +90,17 @@ async def mfrom(ctx, newSub: str):
     else:
         await ctx.send("Subreddit does not exist. Please enter an existing subreddit & make sure your capitalization is correct.")
 
+@bot.command(description="Destress with some virtual bubble wrap.")
+async def bubblewrap(ctx, dim: int):
+    if dim > 15:
+        await ctx.send("Please enter a number under 15.")
+    else:
+        bw = ''
+        for i in range(dim):
+            pops = "||pop!||" * dim
+            bw += (pops + "\n")
+        await ctx.send(bw)
+
 @bot.command(description="Information about MemeBot.")
 async def info(ctx):
     await ctx.send(description)
