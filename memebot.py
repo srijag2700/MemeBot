@@ -92,8 +92,8 @@ async def mfrom(ctx, newSub: str):
 
 @bot.command(description="Destress with some virtual bubble wrap.")
 async def bubblewrap(ctx, dim: int):
-    if dim > 15:
-        await ctx.send("Please enter a number under 15.")
+    if dim > 13:
+        await ctx.send("Please enter a number under 14.")
     else:
         bw = ''
         for i in range(dim):
