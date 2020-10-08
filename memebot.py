@@ -122,7 +122,7 @@ async def on_message(message):
             if random.randint(0,10) <= 2:
                 await message.channel.send('hey <@!144266578408636417> they\'re talking about you')
             else:
-                await message.channel.send('did someone say srija')
+                await message.channel.send('did someone say srija') 
 
     await bot.process_commands(message)
 
