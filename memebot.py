@@ -24,6 +24,8 @@ memes = ['memes', 'dankmemes', 'MemeEconomy', '2meirl4meirl', 'me_irl', 'meme',
 
 pastas = ['copypasta', 'emojipasta', 'WholesomeCopypasta']
 
+random_responses = ['you called?', 'yes?', 'the one and only!', 'did I hear my name?', 'at your service!', 'hello :)']
+
 @bot.event
 async def on_ready():
     print('Logged in as')
@@ -123,6 +125,8 @@ async def on_message(message):
                 await message.channel.send('hey <@!144266578408636417> they\'re talking about you')
             else:
                 await message.channel.send('did someone say srija') 
+        if 'memebot' in message.content.lower():
+            await message.channel.send(random.choice(random_responses))
 
     await bot.process_commands(message)
 
